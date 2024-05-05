@@ -2,7 +2,6 @@ HELP.md
 *.gradle
 gradlew
 gradlew.bat
-application.properties
 gradle-wrapper.properties
 
 build/
