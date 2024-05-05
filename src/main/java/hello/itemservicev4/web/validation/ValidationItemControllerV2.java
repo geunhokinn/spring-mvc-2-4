@@ -210,7 +210,6 @@ public class ValidationItemControllerV2 {
         }
         // 수량이 없고 9,999 이상이면
         if (item.getQuantity() == null || item.getQuantity() >= 9999) {
-            bindingResult.addError(new FieldError("item", "quantity", item.getQuantity(), false, new String[]{"max.item.quantity"}, new Object[]{9999}, null));
             bindingResult.rejectValue("quantity", "max", new Object[]{9999}, null);
         }
 
