@@ -52,6 +52,17 @@ public class ValidationItemControllerV3 {
         // @Validated 는 Item 에 대해서 검증을 수행한다.
         // 검증을 하고 bindResult 에 결과 값이 담긴다.
 
+        // 특정 필드가 아닌 복합 룰 검증
+        // 가격이 있으면서 수량도 있으면
+        if (item.getPrice() != null && item.getQuantity() != null) {
+            int resultPrice = item.getPrice() * item.getQuantity();
+            // 가격 * 수량이 10,000 보다 작으면
+            if (resultPrice < 10000) {
+                // 특정 필드랑 비교하기 어려움 -> global 오류
+                bindingResult.reject("totalPriceMin", new Object[]{10000, resultPrice}, null);
+            }
+        }
+
         // 검증에 실패하면 다시 입력 폼으로
         // errors 가 있으면
         if (bindingResult.hasErrors()) {
